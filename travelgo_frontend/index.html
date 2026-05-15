@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Travel Go | Trang chủ</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+
+    :root {
+      --primary: #0077b6;
+      --secondary: #00b4d8;
+      --accent: #f4a623;
+      --light: #e0f4ff;
+      --dark: #03045e;
+      --white: #ffffff;
+      --gray: #f6f9fc;
+      --text: #2d3a4a;
+      --text-light: #6b7c93;
+      --radius: 14px;
+      --shadow: 0 4px 24px rgba(0,119,182,0.13);
+      --transition: 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--gray);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 48px));
+      margin: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 18px rgba(0,119,182,0.10);
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 900;
+      font-family: 'Playfair Display', serif;
+      color: var(--dark);
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-links a {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      background: var(--light);
+      color: var(--primary);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(160deg, rgba(0,20,90,0.6), rgba(0,180,216,0.25)),
+        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80') center/cover no-repeat;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      color: white;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(8px);
+      margin-bottom: 22px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 1.15;
+      margin-bottom: 22px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      color: rgba(255,255,255,0.92);
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* SECTION */
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--light);
+      color: var(--primary);
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--dark);
+      margin-bottom: 14px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .section-desc {
+      color: var(--text-light);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    /* CARD */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card-img-wrap {
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+
+    .card:hover img {
+      transform: scale(1.08);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(3,4,94,0.85);
+      color: white;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .card-body {
+      padding: 24px;
+    }
+
+    .card-body h3 {
+      color: var(--dark);
+      margin-bottom: 12px;
+      font-size: 1.4rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .card-body p {
+      color: var(--text-light);
+      margin-bottom: 18px;
+    }
+
+    .btn-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.7);
+      padding: 70px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 40px;
+    }
+
+    .footer-logo {
+      color: white;
+      font-size: 1.7rem;
+      margin-bottom: 14px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+    }
+
+    .footer-logo span {
+      color: var(--accent);
+    }
+
+    .footer-title {
+      color: white;
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+  <div class="container nav">
+
+    <a href="index.html" class="logo">
+      Travel <span>Go</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="index.html">Trang chủ</a>
+
+      <a href="diadiem.html">
+        <i class="fa-solid fa-location-dot"></i>
+        Địa điểm
+      </a>
+
+      <a href="amthuc.html">
+        <i class="fa-solid fa-utensils"></i>
+        Ẩm thực
+      </a>
+     <a href="kehoach.html" class="plan-link">
+
+  <i class="fa-solid fa-calendar-check"></i>
+
+  Kế hoạch
+
+  <span id="planCount" class="plan-count">
+    0
+  </span>
+
+      </a>
+
+      <a href="#footer">
+        <i class="fa-solid fa-phone"></i>
+        Liên hệ
+      </a>
+    </div>
+
+  </div>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="hero-tag">
+        Khám phá bản sắc Việt Nam
+      </div>
+
+      <h1>
+        Khám phá vẻ đẹp <span>Việt Nam</span>
+      </h1>
+
+      <p>
+        Hành trình trải nghiệm ẩm thực, địa điểm du lịch
+        và văn hóa đặc sắc trên khắp Việt Nam cùng Travel Go.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- PLACES -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <span class="section-tag">
+          Địa điểm
+        </span>
+
+        <h2 class="section-title">
+          Điểm đến nổi bật Việt Nam
+        </h2>
+
+        <p class="section-desc">
+          Những địa điểm check-in đẹp và nổi tiếng.
+        </p>
+
+        
+            <a href="amthuc.html" class="btn-card">
+
+              Khám phá ngay
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+      </div>
+
+      <div class="card-grid">
+
+        <div class="card">
+
+          <div class="card-img-wrap">
+
+            <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1600&q=80">
+
+            <div class="card-badge">
+              Da Nang
+            </div>
+
+          </div>
+
+          <div class="card-body">
+
+            <h3>Khám phá Đà Nẵng</h3>
+
+            <p>
+              Cầu Rồng, Bà Nà Hills, Biển Mỹ Khê và nhiều địa điểm nổi tiếng.
+            </p>
+
+            <a href="diadiem.html" class="btn-card">
+
+              Xem địa điểm
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  
+  <!-- FOOD -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <span class="section-tag">
+          Ẩm thực
+        </span>
+
+        <h2 class="section-title">
+          Tinh hoa Ẩm thực Việt
+        </h2>
+
+        <p class="section-desc">
+          Khám phá món ăn, đồ uống và đặc sản nổi tiếng.
+        </p>
+
+      </div>
+
+      <div class="card-grid">
+
+        <div class="card">
+
+          <div class="card-img-wrap">
+
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&q=80">
+
+            <div class="card-badge">
+              Food & Drinks
+            </div>
+
+          </div>
+
+          <div class="card-body">
+
+            <h3>Khám phá Ẩm thực Việt Nam</h3>
+
+            <p>
+              Hơn 20+ món ăn, đồ uống và đặc sản nổi tiếng Việt Nam.
+            </p>
+
+            <a href="amthuc.html" class="btn-card">
+
+              Khám phá ngay
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer id="footer">
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+
+          <div class="footer-logo">
+            Travel <span>Go</span>
+          </div>
+
+          <p>
+            Đồng hành cùng bạn trên hành trình khám phá bản sắc Việt Nam.
+          </p>
+
+        </div>
+
+        <div>
+
+          <h4 class="footer-title">
+            Điều hướng
+          </h4>
+
+          <div class="footer-links">
+
+            <a href="index.html">Trang chủ</a>
+
+            <a href="diadiem.html">Địa điểm</a>
+
+            <a href="amthuc.html">Ẩm thực</a>
+
+          </div>
+
+        </div>
+
+        <div>
+
+          <h4 class="footer-title">
+            Liên hệ
+          </h4>
+
+          <div class="footer-links">
+
+            <a href="#">Facebook</a>
+
+            <a href="#">Instagram</a>
+
+            <a href="#">YouTube</a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 Travel Go. All Rights Reserved.
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+
+</html>

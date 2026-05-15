@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Travel Go | Địa điểm Việt Nam</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+
+    :root {
+      --primary: #0077b6;
+      --secondary: #00b4d8;
+      --accent: #f4a623;
+      --light: #e0f4ff;
+      --dark: #03045e;
+      --white: #ffffff;
+      --gray: #f6f9fc;
+      --text: #2d3a4a;
+      --text-light: #6b7c93;
+      --radius: 14px;
+      --shadow: 0 4px 24px rgba(0,119,182,0.13);
+      --transition: 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--gray);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 48px));
+      margin: auto;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 18px rgba(0,119,182,0.10);
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 900;
+      font-family: 'Playfair Display', serif;
+      color: var(--dark);
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-links a:hover {
+      background: var(--light);
+      color: var(--primary);
+    }
+
+    .plan-count{
+      background: red;
+      color: white;
+      font-size: 12px;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    .hero {
+      min-height: 85vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      background:
+      linear-gradient(160deg, rgba(0,20,90,0.65) 0%, rgba(0,180,216,0.30) 100%),
+      url('https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1600&q=80') center/cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      color: white;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+      max-width: 650px;
+      margin: auto;
+    }
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--light);
+      color: var(--primary);
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--dark);
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      color: var(--text-light);
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .place-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .place-card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .place-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0,119,182,0.18);
+    }
+
+    .place-image {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .place-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s ease;
+    }
+
+    .place-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .place-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(3,4,94,0.85);
+      color: white;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .place-content {
+      padding: 24px;
+    }
+
+    .place-content h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark);
+      margin-bottom: 10px;
+      font-size: 1.25rem;
+    }
+
+    .place-content p {
+      color: var(--text-light);
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+    }
+
+    .place-footer{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .btn-detail {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .add-plan-btn{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:none;
+      background:var(--primary);
+      color:white;
+      cursor:pointer;
+      font-size:16px;
+      transition:0.3s;
+    }
+
+    .add-plan-btn:hover{
+      background:var(--dark);
+      transform:scale(1.1);
+    }
+
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.75);
+      padding: 70px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .footer-logo span {
+      color: var(--accent);
+    }
+
+    .footer-title {
+      color: white;
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    @media (max-width: 900px) {
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="container nav">
+
+    <a href="index.html" class="logo">
+      Travel <span>Go</span>
+    </a>
+
+    <div class="nav-links">
+
+      <a href="index.html">
+        <i class="fa-solid fa-house"></i>
+        Trang chủ
+      </a>
+
+      <a href="diadiem.html">
+        <i class="fa-solid fa-location-dot"></i>
+        Địa điểm
+      </a>
+
+      <a href="amthuc.html">
+        <i class="fa-solid fa-utensils"></i>
+        Ẩm thực
+      </a>
+
+      <a href="kehoach.html">
+        <i class="fa-solid fa-calendar-check"></i>
+
+        <span id="planCount" class="plan-count">
+          0
+        </span>
+
+        Kế hoạch
+      </a>
+
+      <a href="#footer">
+        <i class="fa-solid fa-phone"></i>
+        Liên hệ
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="hero-tag">
+      Khám phá bản sắc Việt Nam
+    </div>
+
+    <h1>
+      Địa điểm du lịch <span>Việt Nam</span>
+    </h1>
+
+    <p>
+      Những điểm check-in nổi tiếng và trải nghiệm tuyệt vời
+      tại Việt Nam cùng Travel Go.
+    </p>
+
+  </div>
+
+</section>
+
+<section>
+
+  <div class="container">
+
+    <div class="section-header">
+
+      <span class="section-tag">
+        Thành phố nổi bật
+      </span>
+
+      <h2 class="section-title">
+        Khám phá các tỉnh thành
+      </h2>
+
+      <p class="section-desc">
+        Hiện tại Travel Go hỗ trợ khám phá Đà Nẵng.
+      </p>
+
+    </div>
+
+    <div class="place-grid">
+
+      <a href="#danang" class="place-card">
+
+        <div class="place-image">
+
+          <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1200&q=80">
+
+          <div class="place-badge">
+            Đà Nẵng
+          </div>
+
+        </div>
+
+        <div class="place-content">
+
+          <h3>Thành phố Đà Nẵng</h3>
+
+          <p>
+            Thành phố biển nổi tiếng với nhiều địa điểm check-in đẹp.
+          </p>
+
+          <span class="btn-detail">
+            Khám phá →
+          </span>
+
+        </div>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="danang">
+
+  <div class="container">
+
+    <div class="section-header">
+
+      <span class="section-tag">
+        Đà Nẵng
+      </span>
+
+      <h2 class="section-title">
+        Địa điểm check-in nổi tiếng
+      </h2>
+
+      <p class="section-desc">
+        Những địa điểm đẹp và nổi bật nhất tại Đà Nẵng.
+      </p>
+
+    </div>
+
+    <div class="place-grid">
+
+      <!-- BÀ NÀ -->
+
+      <div class="place-card">
+
+        <div class="place-image">
+
+          <img src="https://images.unsplash.com/photo-1596436889106-be35e843f974?w=1200&q=80">
+
+          <div class="place-badge">
+            Bà Nà Hills
+          </div>
+
+        </div>
+
+        <div class="place-content">
+
+          <h3>Bà Nà Hills</h3>
+
+          <p>
+            Khu du lịch nổi tiếng với Cầu Vàng và khí hậu châu Âu.
+          </p>
+
+          <div class="place-footer">
+
+            <span class="btn-detail">
+              Xem thêm →
+            </span>
+
+            <button class="add-plan-btn"
+              data-name="Bà Nà Hills"
+              data-location="Đà Nẵng"
+              data-price="900000"
+              data-type="Địa điểm">
+
+              <i class="fa-solid fa-plus"></i>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CẦU RỒNG -->
+
+      <div class="place-card">
+
+        <div class="place-image">
+
+          <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1200&q=80">
+
+          <div class="place-badge">
+            Cầu Rồng
+          </div>
+
+        </div>
+
+        <div class="place-content">
+
+          <h3>Cầu Rồng</h3>
+
+          <p>
+            Biểu tượng nổi tiếng của thành phố Đà Nẵng.
+          </p>
+
+          <div class="place-footer">
+
+            <span class="btn-detail">
+              Xem thêm →
+            </span>
+
+            <button class="add-plan-btn"
+              data-name="Cầu Rồng"
+              data-location="Đà Nẵng"
+              data-price="0"
+              data-type="Địa điểm">
+
+              <i class="fa-solid fa-plus"></i>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer id="footer">
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+
+        <div class="footer-logo">
+          Travel <span>Go</span>
+        </div>
+
+        <p>
+          Đồng hành cùng bạn trên hành trình khám phá Việt Nam.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h4 class="footer-title">
+          Điều hướng
+        </h4>
+
+        <div class="footer-links">
+
+          <a href="index.html">Trang chủ</a>
+          <a href="diadiem.html">Địa điểm</a>
+          <a href="amthuc.html">Ẩm thực</a>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <h4 class="footer-title">
+          Liên hệ
+        </h4>
+
+        <div class="footer-links">
+
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">YouTube</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Travel Go. All Rights Reserved.
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+
+function updatePlanCount(){
+
+  const plans =
+    JSON.parse(localStorage.getItem("travelPlans")) || [];
+
+  document.getElementById("planCount").innerText =
+    plans.length;
+
+}
+
+updatePlanCount();
+
+const addBtns =
+  document.querySelectorAll(".add-plan-btn");
+
+addBtns.forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    const plans =
+      JSON.parse(localStorage.getItem("travelPlans")) || [];
+
+    const item = {
+
+      name: btn.dataset.name,
+      location: btn.dataset.location,
+      price: Number(btn.dataset.price),
+      type: btn.dataset.type
+
+    };
+
+    plans.push(item);
+
+    localStorage.setItem(
+      "travelPlans",
+      JSON.stringify(plans)
+    );
+
+    updatePlanCount();
+
+    alert("Đã thêm vào kế hoạch!");
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>
